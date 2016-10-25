@@ -19,7 +19,7 @@ var tap = function () {
     tapSpan.innerHTML = out;
     console.log(hist);
     hist.push(out);
-    avg.innerHTML = hist.reduce(add, 0)/hist.length;
+    avg.innerHTML = hist.reduce(add, 0)/(hist.length-1);
 };
 
 document.addEventListener('click', tap);
