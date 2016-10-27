@@ -1,0 +1,41 @@
+#wordCountList {
+	list-style-type: none;
+	list-style-position: inside;
+	padding: 0px;
+	margin: 0px;
+}
+
+#textContainer {
+	float: left;
+	width: 48%;
+	height: 100%;
+	/*border: black solid 2px;*/
+}
+
+textarea {
+	height: 100%;
+	width: 100%;
+}
+
+#infoContainer {
+	float: right;
+	width: 48%;
+	height: 100%;
+	overflow: scroll;
+	/*border: black solid 2px;*/
+}
+
+.title {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+t:after {
+    content:"\a";
+    white-space: pre;
+}
+
+.dataPoint:after {
+    content:"\a";
+    white-space: pre;
+}
