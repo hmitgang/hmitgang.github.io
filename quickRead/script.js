@@ -56,5 +56,6 @@ var stopInterval = function () {
 };
 
 bodyText.oninput = function () {
-	words = bodyText.value.split(" ");
+	// words = bodyText.value.split(" ");
+	words = bodyText.value.trim().split(/[\s,]+/);
 };
