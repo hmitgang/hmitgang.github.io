@@ -11,6 +11,7 @@ textarea {
   background: #ad97ad;
   color: #120112;
   padding: 5px;
+  resize: none;
 }
 
 #wordcontainer {
