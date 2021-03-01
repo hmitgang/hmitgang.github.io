@@ -1,0 +1,10 @@
+#myCanvas {
+    height: 80%;
+    width: 98%;
+    display: inline;
+    background-color: red;
+}
+.container {
+    width:100%;
+    text-align: center;
+}
