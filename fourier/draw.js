@@ -30,7 +30,7 @@ function draw_() {
 
     draw();
 
-    setTimeout(draw_, 50);
+    setTimeout(draw_, 25);
 }
 
 

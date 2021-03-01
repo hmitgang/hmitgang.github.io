@@ -1,8 +1,9 @@
 #myCanvas {
-    height: 80%;
+    height: 90%;
     width: 98%;
     display: inline;
-    background-color: red;
+    background-color: white;
+    border: grey solid 1px;
 }
 .container {
     width:100%;
