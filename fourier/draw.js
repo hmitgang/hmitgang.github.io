@@ -1,9 +1,9 @@
-var c; 
+var canvas; 
 var ctx;
 
 function set_canvas_size() {
-    window.c.setAttribute('width', window.getComputedStyle(c, null).getPropertyValue("width"));
-    window.c.setAttribute('height', window.getComputedStyle(c, null).getPropertyValue("height"));
+    window.canvas.setAttribute('width', window.getComputedStyle(canvas, null).getPropertyValue("width"));
+    window.canvas.setAttribute('height', window.getComputedStyle(canvas, null).getPropertyValue("height"));
 }
 
 window.onresize = function() {
@@ -11,8 +11,8 @@ window.onresize = function() {
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    c = document.getElementById("myCanvas");
-    ctx = c.getContext("2d");
+    canvas = document.getElementById("myCanvas");
+    ctx = canvas.getContext("2d");
 
     set_canvas_size();
     setup();
@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function draw_() {
 
-    w = c.width;
-    h = c.height;
-    window.c.setAttribute('width', window.getComputedStyle(c, null).getPropertyValue("width"));
+    w = canvas.width;
+    h = canvas.height;
+    window.canvas.setAttribute('width', window.getComputedStyle(canvas, null).getPropertyValue("width"));
 
-    ctx.fillStyle = c.style.background_color;
+    ctx.fillStyle = canvas.style.background_color;
     ctx.clearRect(0,0,w,h);
 
     draw();
