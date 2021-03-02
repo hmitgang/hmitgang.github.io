@@ -27,10 +27,8 @@ function draw_() {
 
     ctx.fillStyle = canvas.style.background_color;
     ctx.clearRect(0,0,w,h);
-
     draw();
-
-    setTimeout(draw_, 25);
+    setTimeout(draw_, 40);
 }
 
 

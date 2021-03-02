@@ -1,24 +1,21 @@
-
+var user_input = [];
 var signals = [];
 var user_drawing = false;
 var output_buffer = [];
 var mousePos;
+var scale = 1;
+var t = 0;
 
 function setup() {
-    // X = dft([-10,-10,10, 10,-10,-10,10, 10,-10,-10,10, 10,-10,-10,10, 10,-10,-10,10, 10,]);
-    // var input = [100,100,100,-100,-100,-100,100,100,100,-100,-100,-100,100,100,100,-100,-100,-100,100,100,100,-100,-100,-100];
-    
+    populateExamples();
 
     canvas.onmousedown = function(e) {
         user_drawing = true;
-        input = [];
-        output_buffer = [];
+        clear_signals();
     };
 
     canvas.onmouseup = function(e) {
-        signals = dft(input);
-        // X = [{amp: 1, phase:0}, {amp: 3, phase:0}, {amp: 5, phase:0}];
-        signals.sort((a,b)=> b.amp-a.amp);
+        set_signals(user_input);
         user_drawing = false;
     };
 
@@ -33,18 +30,16 @@ function setup() {
 }
 
 
-var scale = 1;
-var t = 0;
 function draw() {
     if (user_drawing) {
-        input.push({re: mousePos.x - canvas.width/2, im: mousePos.y - canvas.height/2});
+        user_input.push({re: mousePos.x - canvas.width/2, im: mousePos.y - canvas.height/2});
         console.log(mousePos);
 
         ctx.beginPath();
-        ctx.moveTo(input[0].re + canvas.width/2, input[0].im + canvas.height/2);
+        ctx.moveTo(user_input[0].re + canvas.width/2, user_input[0].im + canvas.height/2);
         
-        for(var i=0; i < input.length; i++){
-            ctx.lineTo(input[i].re + canvas.width/2, input[i].im + canvas.height/2);
+        for(var i=0; i < user_input.length; i++){
+            ctx.lineTo(user_input[i].re + canvas.width/2, user_input[i].im + canvas.height/2);
         }
         ctx.strokeStyle = "grey";
         ctx.stroke();
@@ -54,16 +49,10 @@ function draw() {
         var prevx = canvas.width/2;
         var prevy = canvas.height/2;
         for (var i = 0; i < signals.length; i++) {
-        // for (var i = 1; i <= 250; i+=2) {
-        //     var A = 150*(4/(i*Math.PI))
-        //     var x = A*Math.cos(i*t)+prevx;
-        //     var y = -A*Math.sin(i*t)+prevy;
             let radius = scale*signals[i].amp;
             let rotation =0;
             var x = radius*Math.cos(signals[i].freq*t+signals[i].phase + rotation)+prevx;
             var y = -radius*Math.sin(signals[i].freq*t+signals[i].phase + rotation)+prevy;
-            // var y = -A*Math.sin(i*t+X[i].phase)+prevy;
-
             
             draw_circle(prevx, prevy, radius, "#22222240");
             draw_line(prevx, prevy, x, y, "blue");
@@ -98,7 +87,6 @@ function draw() {
     }
 }
 
-
 function dft(x) { // input is list of complex numbers with re, im
     const X = [];
     const N = x.length;
@@ -123,3 +111,15 @@ function dft(x) { // input is list of complex numbers with re, im
     return X;
 }
 
+function clear_signals() {
+    t=0;
+    user_input = [];
+    output_buffer = [];
+    signals = [];
+}
+
+function set_signals(input) {
+    signals = dft(input);
+    // X = [{amp: 1, phase:0}, {amp: 3, phase:0}, {amp: 5, phase:0}];
+    signals.sort((a,b)=> b.amp-a.amp);
+}

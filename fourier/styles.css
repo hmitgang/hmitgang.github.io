@@ -9,3 +9,12 @@
     width:100%;
     text-align: center;
 }
+
+#example {
+    width: 100%;
+    text-align: left;
+}
+.examples {
+    align-self: left;
+    display: inline;
+}
