@@ -9,6 +9,9 @@
     width:100%;
     text-align: center;
 }
+.slidecontainer {
+    vertical-align: center;
+}
 
 #example {
     width: 100%;

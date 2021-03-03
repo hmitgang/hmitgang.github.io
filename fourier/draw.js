@@ -1,5 +1,6 @@
 var canvas; 
 var ctx;
+var stepTimeSlider;
 
 function set_canvas_size() {
     window.canvas.setAttribute('width', window.getComputedStyle(canvas, null).getPropertyValue("width"));
@@ -8,11 +9,16 @@ function set_canvas_size() {
 
 window.onresize = function() {
     set_canvas_size();
+    output_buffer = [];
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
+    stepTimeSlider = document.getElementById("stepTime");
+    stepTimeSlider.onchange = function(e) {
+        document.getElementById("stepTimeValue").innerHTML = stepTimeSlider.value + "ms"
+    }
 
     set_canvas_size();
     setup();
@@ -28,7 +34,7 @@ function draw_() {
     ctx.fillStyle = canvas.style.background_color;
     ctx.clearRect(0,0,w,h);
     draw();
-    setTimeout(draw_, 40);
+    setTimeout(draw_, stepTimeSlider.value);
 }
 
 
