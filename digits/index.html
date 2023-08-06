@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable/lib/droppable.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" target-densitydpi=device-dpi />
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+      .container {
+        display: flex;
+        margin: 10px;
+        text-align: center;
+      }
+      .button {
+        height: 50px;
+        width: 50px;
+        padding: 3px;
+        margin: 5px;
+        border-radius: 100%;
+        align-items: center;
+        justify-content: center;
+        border: green dashed 1px;
+        display: flex;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .op.button {
+        height: 40px;
+        width: 40px;
+      }
+      #num-container {
+        width: 250px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #body-container {
+        /* width: 80%; */
+        flex-direction: column;
+        align-items: center;
+      }
+      .selected {
+        background-color: lightgreen;
+      }
+      .correct-answer {
+        background-color: lightblue !important;
+      }
+      #win-banner {
+        border-radius: 20px;
+        background-color: yellow;
+        padding: 10px;
+        margin: 5px;
+      }
+    </style>
+    <script src="digit_utils.js"></script>
+  </head>
+  <body>
+    <div class="container" id="body-container">
+        <button id="toggle-solution">Toggle solution</button>
+        
+        <div id="win-banner" hidden>🎉 You win! 🎉 <br> Reload for a new puzzle.</div>
+
+        <div class="container" style="flex-direction: column;">
+            <span style="margin-top: 10px; margin-bottom: -10px;">Target</span><h2 id="target"></h2>
+        </div>
+
+        <div class="container" id="num-container">
+            <div class="number-container"><div class="number button"></div></div>
+            <div class="number-container"><div class="number button"></div></div>
+            <div class="number-container"><div class="number button"></div></div>
+            <div class="number-container"><div class="number button"></div></div>
+            <div class="number-container"><div class="number button"></div></div>
+            <div class="number-container"><div class="number button"></div></div>
+        </div>
+
+        <div class="container" id="ops-container">
+            
+            <div class="op button" id="plus">+</div>
+            <div class="op button" id="minus">−</div>
+            <div class="op button" id="times">×</div>
+            <div class="op button" id="divide">÷</div>
+        </div>
+
+        <div class="container">
+            <div class="button" id="clear">Clear</div>
+            <div class="button" id="undo">Undo</div>
+        </div>
+        
+        <div id="solution" hidden></div>
+    </div>
+
+    <script src="digits.js"></script>
+  </body>
+</html>
